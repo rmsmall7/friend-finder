@@ -4,10 +4,10 @@ var app = express();
 var PORT = process.env.PORT || 8080;
 
 // create application/json parser
-var jsonParser = bodyParser.json()
+// var jsonParser = bodyParser.json()
  
 // create application/x-www-form-urlencoded parser
-var urlencodedParser = bodyParser.urlencoded({ extended: false })
+app.use(bodyParser.urlencoded({ extended: true }));
 
 // parse application/json
 app.use(bodyParser.json({type: 'application/++json'}))
@@ -18,6 +18,7 @@ app.use(bodyParser.raw({type: 'application/vnd.custom-type'}))
 // parse html body into a string
 app.use(bodyParser.text({ type: 'text/html'}))
 
+require("./app/routing/app-routes")(app);
 require("./app/routing/html-routing")(app);
  
  
